@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Exkyn.Core.Helpers
 {
-    public static class ExpirationDay
+    public static class ExpirationDayHelpers
     {
         public static DateTime Run(int day, DateTime date) => date.AddDays(day);
 
