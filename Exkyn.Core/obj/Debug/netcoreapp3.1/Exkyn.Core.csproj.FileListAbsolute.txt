@@ -1,7 +1,6 @@
 D:\Projetos\Exkyn.Core\Exkyn.Core\bin\Debug\netcoreapp3.1\Exkyn.Core.deps.json
 D:\Projetos\Exkyn.Core\Exkyn.Core\bin\Debug\netcoreapp3.1\Exkyn.Core.dll
 D:\Projetos\Exkyn.Core\Exkyn.Core\bin\Debug\netcoreapp3.1\Exkyn.Core.pdb
-D:\Projetos\Exkyn.Core\Exkyn.Core\obj\Debug\netcoreapp3.1\Exkyn.Core.csprojAssemblyReference.cache
 D:\Projetos\Exkyn.Core\Exkyn.Core\obj\Debug\netcoreapp3.1\Exkyn.Core.AssemblyInfoInputs.cache
 D:\Projetos\Exkyn.Core\Exkyn.Core\obj\Debug\netcoreapp3.1\Exkyn.Core.AssemblyInfo.cs
 D:\Projetos\Exkyn.Core\Exkyn.Core\obj\Debug\netcoreapp3.1\Exkyn.Core.csproj.CoreCompileInputs.cache
