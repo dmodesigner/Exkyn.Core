@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Folders
+Exkyn.Core/bin/*
+Exkyn.Core/obj/*
