@@ -22,9 +22,9 @@ namespace Exkyn.Core.Helpers
 
         public static void Create(string directory, string file)
         {
-            DirectoryHelpers.AddSlashEnd(ref directory);
-
             ValidateFileDirectory(directory, file);
+
+            DirectoryHelpers.AddSlashEnd(ref directory);
 
             if (!File.Exists(directory + file))
                 File.Create(directory + file).Close();
@@ -32,21 +32,21 @@ namespace Exkyn.Core.Helpers
 
         public static bool Exist(string directory, string file)
         {
-            DirectoryHelpers.AddSlashEnd(ref directory);
-
             ValidateFileDirectory(directory, file);
+
+            DirectoryHelpers.AddSlashEnd(ref directory);
 
             return File.Exists(directory + file);
         }
 
         public static string ConvertToString(string directory, string file)
         {
-            DirectoryHelpers.AddSlashEnd(ref directory);
-
             ValidateFileDirectory(directory, file);
 
             if (!File.Exists(directory + file))
-                throw new ArgumentException($"O arquivo ({directory}{file}) não foi encontrado.");
+                throw new ArgumentException($"O arquivo ({directory}{file}) não foi encontrado."); 
+            
+            DirectoryHelpers.AddSlashEnd(ref directory);
 
             return File.ReadAllText(directory + file);
         }
