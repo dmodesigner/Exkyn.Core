@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Exkyn.Core.Helpers
 {
@@ -9,6 +10,8 @@ namespace Exkyn.Core.Helpers
 
         public static TSaida Get(string url)
         {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var response = client.GetAsync(url);
 
             if (response.Result.IsSuccessStatusCode)
@@ -19,6 +22,8 @@ namespace Exkyn.Core.Helpers
 
         public static List<TSaida> GetList(string url)
         {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var response = client.GetAsync(url);
 
             if (response.Result.IsSuccessStatusCode)
@@ -34,6 +39,8 @@ namespace Exkyn.Core.Helpers
 
         public static TSaida Post(string url, TEntrada obj)
         {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var response = client.PostAsJsonAsync(url, obj);
 
             if (response.Result.IsSuccessStatusCode)
@@ -44,6 +51,8 @@ namespace Exkyn.Core.Helpers
 
         public static List<TSaida> PostList(string url, TEntrada obj)
         {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var response = client.PostAsJsonAsync(url, obj);
 
             if (response.Result.IsSuccessStatusCode)
