@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "Microsoft.AspNet.WebApi.Client/5.2.7": {
+      "Microsoft.AspNet.WebApi.Client/5.2.9": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "10.0.1",
@@ -2076,20 +2076,22 @@
     }
   },
   "libraries": {
-    "Microsoft.AspNet.WebApi.Client/5.2.7": {
-      "sha512": "/76fAHknzvFqbznS6Uj2sOyE9rJB3PltY+f53TH8dX9RiGhk02EhuFCWljSj5nnqKaTsmma8DFR50OGyQ4yJ1g==",
+    "Microsoft.AspNet.WebApi.Client/5.2.9": {
+      "sha512": "cuVhPjjNMSEFpKXweMNBbsG4RUFuuZpFBm8tSyw309U9JEjcnbB6n3EPb4xwgcy9bJ38ctIbv5G8zXUBhlrPWw==",
       "type": "package",
-      "path": "microsoft.aspnet.webapi.client/5.2.7",
+      "path": "microsoft.aspnet.webapi.client/5.2.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "NET.icon.png",
+        "NET_Library_EULA_ENU.txt",
         "lib/net45/System.Net.Http.Formatting.dll",
         "lib/net45/System.Net.Http.Formatting.xml",
         "lib/netstandard2.0/System.Net.Http.Formatting.dll",
         "lib/netstandard2.0/System.Net.Http.Formatting.xml",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
-        "microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
+        "microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
       ]
     },
@@ -6480,7 +6482,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "Microsoft.AspNet.WebApi.Client >= 5.2.7",
+      "Microsoft.AspNet.WebApi.Client >= 5.2.9",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5"
     ]
   },
@@ -6492,7 +6494,7 @@
     "version": "7.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\danie\\OneDrive\\Projetos\\Exkyn.Core\\Exkyn.Core\\Exkyn.Core.csproj",
-      "projectName": "Exkyn.Core",
+      "projectName": "exkyn.core",
       "projectPath": "C:\\Users\\danie\\OneDrive\\Projetos\\Exkyn.Core\\Exkyn.Core\\Exkyn.Core.csproj",
       "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\danie\\OneDrive\\Projetos\\Exkyn.Core\\Exkyn.Core\\obj\\",
@@ -6531,7 +6533,7 @@
         "dependencies": {
           "Microsoft.AspNet.WebApi.Client": {
             "target": "Package",
-            "version": "[5.2.7, )"
+            "version": "[5.2.9, )"
           },
           "Microsoft.AspNetCore.Mvc.Core": {
             "target": "Package",
