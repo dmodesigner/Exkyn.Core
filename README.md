@@ -9,7 +9,7 @@
     <li>Models</li>
 </ul>
 
-<h3>Helpers</h3>
+<h4>Helpers</h4>
 
 <p><em>ApiHelpers</em></p>
 
@@ -55,7 +55,7 @@
 
 <p>Métodos para tratar uma variável, removendo uma formatação adicionando formatação e etc.</p>
 
-<h3>Models</h3>
+<h4>Models</h4>
 
 <p><em>Designer</em></p>
 
@@ -73,15 +73,11 @@
 
 <p>A lista das siglas de todos os estados brasileiros.</p>
 
-<hr />
-
 <h2>Autor</h2>
 
 <p>
     Criado por <a href="https://github.com/dmodesigner/">Daniel Moura</a>
 </p>
-
-<hr />
 
 <h2>Licença</h2>
 
