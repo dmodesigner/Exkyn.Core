@@ -26,7 +26,4 @@ jobs:
     - name: Gerar Pacote
       run: dotnet build -C release -o package-nuget
       
-    - name: Push no Nuget
-      run: |
-        cd package-nuget
-        dotnet nuget push *.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source "https://nuget.pkg.github.com/dmodesigner/index.json"
+   
