@@ -2,16 +2,14 @@
 
 <h3>Uma biblioteca de uso geral, contendo métodos genéricos e de uso em vários projetos da Exkyn. O objetivo desse repositório é permitir o uso compartilhado entre projetos com métodos que são usados com grande frequência.</h3>
 
-<hr />
-
-<p>O projeto é dividido em duas áreas:</p>
+<h2>O projeto é dividido em duas áreas</h2>
 
 <ul>
     <li>Helpers</li>
     <li>Models</li>
 </ul>
 
-<h4>Helpers</h4>
+<h3>Helpers</h3>
 
 <p><em>ApiHelpers</em></p>
 
@@ -57,21 +55,21 @@
 
 <p>Métodos para tratar uma variável, removendo uma formatação adicionando formatação e etc.</p>
 
-<h4>Models</h4>
+<h3>Models</h3>
 
-<p><em>>Designer</em></p>
+<p><em>Designer</em></p>
 
 <p>Informações sobre a DMO Designer. Como links, e-mail, telefone e etc.</p>
 
-<p><em>>Developer</em></p>
+<p><em>Developer</em></p>
 
 <p>Informações sobre a Exkyn Tecnologia. Como links, e-mail, telefone e etc.</p>
 
-<p><em>>HttpResponseException</em></p>
+<p><em>HttpResponseException</em></p>
 
 <p>Uma model para uso no tratamento de erro de forma genérica.</p>
 
-<p><em>>StateOfBrazil</em></p>
+<p><em>StateOfBrazil</em></p>
 
 <p>A lista das siglas de todos os estados brasileiros.</p>
 
