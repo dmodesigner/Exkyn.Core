@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+
+    <PackageId>exkyn.core</PackageId>
+    <Version>7.0.0</Version>
+    <Authors>Daniel Moura de Oliveira</Authors>
+    <Company>Exkyn Tecnologia</Company>
+    <RepositoryUrl>https://github.com/dmodesigner/Exkyn.Core</RepositoryUrl>
+    <GeneratePachageOnBuild>true</GeneratePachageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
