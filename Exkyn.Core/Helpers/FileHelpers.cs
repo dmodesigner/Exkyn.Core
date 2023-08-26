@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Exkyn.Core.Helpers
 {
@@ -16,9 +18,32 @@ namespace Exkyn.Core.Helpers
                 throw new ArgumentException("Você deve informar o nome do arquivo.");
         }
 
+        private static void WriteFile(string directory, string file, string text, Encoding encoding)
+        {
+            ValidateFileDirectory(directory, file);
+
+            DirectoryHelpers.AddSlashEnd(ref directory);
+
+            Create(directory, file);
+
+            using (var f = new StreamWriter(directory + file, true, encoding))
+            {
+                f.WriteLine(text);
+            }
+        }
+
         #endregion
 
         #region Métodos Públicos
+
+        public static bool Exist(string directory, string file)
+        {
+            ValidateFileDirectory(directory, file);
+
+            DirectoryHelpers.AddSlashEnd(ref directory);
+
+            return File.Exists(directory + file);
+        }
 
         public static void Create(string directory, string file)
         {
@@ -30,14 +55,9 @@ namespace Exkyn.Core.Helpers
                 File.Create(directory + file).Close();
         }
 
-        public static bool Exist(string directory, string file)
-        {
-            ValidateFileDirectory(directory, file);
+        public static void Write(string directory, string file, string text) => WriteFile(directory, file, text, Encoding.UTF8);
 
-            DirectoryHelpers.AddSlashEnd(ref directory);
-
-            return File.Exists(directory + file);
-        }
+        public static void Write(string directory, string file, string text, Encoding encoding) => WriteFile(directory, file, text, encoding);
 
         public static string ConvertToString(string directory, string file)
         {

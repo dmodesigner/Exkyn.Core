@@ -2,7 +2,6 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Exkyn.Core.Helpers
 {
@@ -14,6 +13,15 @@ namespace Exkyn.Core.Helpers
         {
             if (string.IsNullOrEmpty(input))
                 throw new ArgumentException("Não é possível criptografar / descriptografar uma variável vazia ou nula.");
+        }
+
+        private static void ValidateKeyAndVector(string key, string vector)
+        {
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentException("Informe a chave KEY.");
+
+            if (string.IsNullOrEmpty(vector))
+                throw new ArgumentException("Informe o Vetor.");
         }
 
         #endregion
@@ -37,50 +45,69 @@ namespace Exkyn.Core.Helpers
             return sb.ToString();
         }
 
-        public static byte[] AesEncryptor(string input, byte[] key, byte[] iv)
+        public static string AesEncryptor(string input, string base64Key, string base64Vector)
         {
             Validate(input);
 
-            byte[] inputBytes;
+            ValidateKeyAndVector(base64Key, base64Vector);
 
             using (Aes aes = Aes.Create())
             {
                 aes.KeySize = 256;
                 aes.Mode = CipherMode.CBC;
-                aes.Key = key;
-                aes.IV = iv;
-                
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Key = Convert.FromBase64String(base64Key);
+                aes.IV = Convert.FromBase64String(base64Vector);
+
+                byte[] encryptedData;
+
                 using (ICryptoTransform encryptor = aes.CreateEncryptor())
                 {
-                    var inputBuffer = Encoding.UTF8.GetBytes(input);
-                    inputBytes = encryptor.TransformFinalBlock(inputBuffer, 0, inputBuffer.Length);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                        {
+                            using (StreamWriter sw = new StreamWriter(cs))
+                            {
+                                sw.Write(input);
+                            }
+                            encryptedData = ms.ToArray();
+                        }
+                    }
                 }
+
+                return Convert.ToBase64String(encryptedData);
             }
-            
-            return inputBytes;
         }
 
-        public static string AesDecryptor(byte[] input, byte[] key, byte[] iv)
+        public static string AesDecryptor(string input, string base64Key, string base64Vector)
         {
+            if (input == null || input.Length == 0)
+                throw new ArgumentException("Informe o texto a ser descriptografado.");
+
+            ValidateKeyAndVector(base64Key, base64Vector);
+
             var r = string.Empty;
 
             using (Aes aes = Aes.Create())
             {
                 aes.KeySize = 256;
                 aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Key = Convert.FromBase64String(base64Key);
+                aes.IV = Convert.FromBase64String(base64Vector);
 
-                using (ICryptoTransform decryptor = aes.CreateDecryptor(key, iv))
+                using (ICryptoTransform decryptor = aes.CreateDecryptor())
                 {
+                    byte[] cipher = Convert.FromBase64String(input);
 
-                    using (MemoryStream msDecrypt = new MemoryStream(input))
+                    using (MemoryStream ms = new MemoryStream(cipher))
                     {
-
-                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
                         {
-
-                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                            using (StreamReader sr = new StreamReader(cs))
                             {
-                                r = srDecrypt.ReadToEnd();
+                                r = sr.ReadToEnd();
                             }
                         }
                     }
