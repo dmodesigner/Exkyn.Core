@@ -30,4 +30,4 @@ jobs:
     - name: Publica no Nuget
       run: |
         cd out
-        dotnet nuget push *.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source "https://nuget.pkg.github.com/dmodesigner/index.json"
+        dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET }} --source "https://nuget.pkg.github.com/dmodesigner/index.json" --skip-duplicate
