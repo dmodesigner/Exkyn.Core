@@ -25,9 +25,9 @@ jobs:
       run: dotnet restore
       
     - name: Gera o Pacote
-      run: dotnet build -c Release -o package-nuget
+      run: dotnet build -c Release -o out
       
     - name: Publica no Nuget
       run: |
-        cd package-nuget
+        cd out
         dotnet nuget push *.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source "https://nuget.pkg.github.com/dmodesigner/index.json"
