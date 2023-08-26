@@ -9,7 +9,16 @@
     <Company>Exkyn Tecnologia</Company>
     <RepositoryUrl>https://github.com/dmodesigner/Exkyn.Core</RepositoryUrl>
     <GeneratePachageOnBuild>true</GeneratePachageOnBuild>
+    <Title>Exkyn Core</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
