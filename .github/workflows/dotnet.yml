@@ -20,13 +20,14 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - name: Restore dependencies
+        
+    - name: Restaura as Dependencias
       run: dotnet restore
       
-    - name: Gerar Pacote
-      run: dotnet build -C release -o package-nuget
+    - name: Gera o Pacote
+      run: dotnet build -C Release -o package-nuget
       
-   - name: Push no Nuget
+    - name: Publica no Nuget
       run: |
         cd package-nuget
         dotnet nuget push *.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source "https://nuget.pkg.github.com/dmodesigner/index.json"
