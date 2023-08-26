@@ -48,10 +48,6 @@
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.9, )"
-            },
-            "Microsoft.AspNetCore.Mvc.Core": {
-              "target": "Package",
-              "version": "[2.2.5, )"
             }
           },
           "imports": [
