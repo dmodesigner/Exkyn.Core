@@ -12,14 +12,14 @@
     <Title>Exkyn Core</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>icon-exkyn.jpg</PackageIcon>
+    <PackageIcon>LogoExkyn.png</PackageIcon>
     <PackageTags>Exkyn Core</PackageTags>
     <Description>Biblioteca com métodos genericos para uso dentro de projetos .NET
 </Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\Exkyn\_Designer\Logomarca\icon-exkyn.jpg">
+    <None Include="..\..\..\Área de Trabalho\LogoExkyn.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
