@@ -8,18 +8,17 @@
     <Authors>Daniel Moura de Oliveira</Authors>
     <Company>Exkyn Tecnologia</Company>
     <RepositoryUrl>https://github.com/dmodesigner/Exkyn.Core</RepositoryUrl>
-    <GeneratePachageOnBuild>true</GeneratePachageOnBuild>
     <Title>Exkyn Core</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>LogoExkyn.png</PackageIcon>
+    <PackageIcon>icon-exkyn.png</PackageIcon>
     <PackageTags>Exkyn Core</PackageTags>
-    <Description>Biblioteca com métodos genericos para uso dentro de projetos .NET
-</Description>
+    <Description>Biblioteca com métodos genericos para uso dentro de projetos .NET</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Área de Trabalho\LogoExkyn.png">
+    <None Include="..\..\Exkyn\_Designer\Logomarca\icon-exkyn.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
