@@ -25,7 +25,7 @@ jobs:
       run: dotnet restore
       
     - name: Gera o Pacote
-      run: dotnet build -C Release -o package-nuget
+      run: dotnet build -c Release -o package-nuget
       
     - name: Publica no Nuget
       run: |
