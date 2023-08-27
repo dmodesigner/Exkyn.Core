@@ -1,4 +1,4 @@
-# This workflow will build a .NET project
+re# This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: Pacote Exkyn Core
@@ -30,5 +30,5 @@ jobs:
     - name: Publica no Nuget
     - run: |
         cd out
-        dotnet nuget push *.nupkg --api-key ${{ NUGET_API_KEY }} --source ${{ NUGET_SERVER }} --skip-duplicate
+        dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
 
