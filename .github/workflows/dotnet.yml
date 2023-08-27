@@ -28,6 +28,6 @@ jobs:
       run: dotnet build -c Release -o out
       
     - name: Publica no Nuget
-    - run: |
+      run: |
         cd out
         dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
