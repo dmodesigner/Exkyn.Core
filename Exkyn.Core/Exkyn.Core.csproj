@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
 
-    <PackageId>exkyn.core</PackageId>
+    <PackageId>Exkyn.Core</PackageId>
     <Version>7.0.3</Version>
     <Authors>Daniel Moura de Oliveira</Authors>
     <Company>Exkyn Tecnologia</Company>
