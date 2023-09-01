@@ -1,84 +1,86 @@
-<h1>Biblioteca Exkyn Core</h1>
 
-<h3>Uma biblioteca de uso geral, contendo métodos genéricos e de uso em vários projetos da Exkyn. O objetivo desse repositório é permitir o uso compartilhado entre projetos com métodos que são usados com grande frequência.</h3>
+# Biblioteca Exkyn Core
 
-<h2>O projeto é dividido em duas áreas</h2>
+Uma biblioteca de uso geral, contendo métodos genéricos e de uso em vários projetos da Exkyn. O objetivo desse repositório é permitir o uso compartilhado entre projetos com métodos que são usados com grande frequência.
 
-<ul>
-    <li>Helpers</li>
-    <li>Models</li>
-</ul>
+## O projeto é dividido em duas áreas
 
-<h4>Helpers</h4>
+- Helpers
 
-<p><em>ApiHelpers</em></p>
+- Models
+- 
+## Helpers
 
-<p>Métodos que permite consumir uma API com retorno em JSON e alimenta o retorno para um objeto ou lista.</p>
+#### ApiHelpers
 
-<p><em>ConvertHelpers</em></p>
+Métodos que permite consumir uma API com retorno em JSON e alimenta o retorno para um objeto ou lista.
 
-<p>Métodos de conversão de objetos e elementos.</p>
+#### ConvertHelpers
 
-<p><em>DirectoryHelpers</em></p>
+Métodos de conversão de objetos e elementos.
 
-<p>Métodos para criar, verificar se existe um diretório em um caminho especifico.</p>
+#### DirectoryHelpers
 
-<p><em>EncryptHelpers</em></p>
+Métodos para criar, verificar se existe um diretório em um caminho especifico.
 
-<p>Métodos para criptografar em MD5 e AES (criptografia e descriptografia).</p>
+#### EncryptHelpers
 
-<p><em>ExpirationDayHelpers</em></p>
+Métodos para criptografar em MD5 e AES (criptografia e descriptografia).
 
-<p>Métodos para expiração de dias, retorno de dias uteis.</p>
+#### ExpirationDayHelpers
 
-<p><em>FileHelpers</em></p>
+Métodos para expiração de dias, retorno de dias uteis.
 
-<p>Métodos para criar um arquivo, validar se existe o arquivo ou escrever em um arquivo.</p>
+#### FileHelpers
 
-<p><em>HourHelpers</em></p>
+Métodos para criar um arquivo, validar se existe o arquivo ou escrever em um arquivo.
 
-<p>Métodos para tratamento das horas (usado em relatórios).</p>
+#### HourHelpers
 
-<p><em>LogHelpers</em></p>
+Métodos para tratamento das horas (usado em relatórios).
 
-<p>Métodos para escrever um log em um arquivo.</p>
+#### LogHelpers
 
-<p><em>MoneyHelpers</em></p>
+Métodos para formatar um valor recebido em moeda.
 
-<p>Métodos para formatar um valor recebido em moeda.</p>
+#### MoneyHelpers
 
-<p><em>ValidateHelpers</em></p>
+Métodos de conversão de objetos e elementos.
 
-<p>Métodos para validar CPF, CNPJ, PIS e E-mail.</p>
+#### ValidateHelpers
 
-<p><em>VariableHelpers</em></p>
+Métodos para validar CPF, CNPJ, PIS e E-mail.
 
-<p>Métodos para tratar uma variável, removendo uma formatação adicionando formatação e etc.</p>
+#### VariableHelpers
 
-<h4>Models</h4>
+Métodos para tratar uma variável, removendo uma formatação adicionando formatação e etc.
 
-<p><em>Designer</em></p>
+## Models
 
-<p>Informações sobre a DMO Designer. Como links, e-mail, telefone e etc.</p>
+#### Designer
 
-<p><em>Developer</em></p>
+Informações sobre a DMO Designer. Como links, e-mail, telefone e etc.
 
-<p>Informações sobre a Exkyn Tecnologia. Como links, e-mail, telefone e etc.</p>
+#### Developer
 
-<p><em>HttpResponseException</em></p>
+Informações sobre a Exkyn Tecnologia. Como links, e-mail, telefone e etc.
 
-<p>Uma model para uso no tratamento de erro de forma genérica.</p>
+#### HttpResponseException
 
-<p><em>StateOfBrazil</em></p>
+Uma model para uso no tratamento de erro de forma genérica.
 
-<p>A lista das siglas de todos os estados brasileiros.</p>
+#### StateOfBrazil
 
-<h2>Autor</h2>
+A lista das siglas de todos os estados brasileiros.
 
-<p>
-    Criado por <a href="https://github.com/dmodesigner/">Daniel Moura</a>
-</p>
+## Autor
 
-<h2>Licença</h2>
+- [@Daniel Moura](https://github.com/dmodesigner/)
 
-<p>Esse projeto pode ser usado de forma livre e sem nenhuma garantia, sendo de total responsabilidade sua o uso. Para obter mais informações sobre a licença de uso, consulte o arquivo LICENSE</p>
+## Licença
+
+Esse projeto é oferecido sobre uso da licença MIT. Sendo livre seu uso pessoal ou comercial.
+
+Sendo oferecido sem garantias e de sua total responsabilidade seu uso.
+
+Para maiores detalhes consulte o arquivo de [licença](https://github.com/dmodesigner/Exkyn.Core/blob/master/LICENSE).
