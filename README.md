@@ -8,7 +8,7 @@ Uma biblioteca de uso geral, contendo métodos genéricos e de uso em vários pr
 - Helpers
 
 - Models
-- 
+
 ## Helpers
 
 #### ApiHelpers
