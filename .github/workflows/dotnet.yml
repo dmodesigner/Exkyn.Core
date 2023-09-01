@@ -30,7 +30,9 @@ jobs:
       run: dotnet build -c Release -o ${{ env.PASTA }}
 
     - name: Publica Pacote no Github
-      run: dotnet nuget add source --username dmodesigner --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ secrets.NUGET_PACKAGE_GITHUB }}
+      run: |
+        dotnet nuget add source --username dmodesigner --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ secrets.NUGET_PACKAGE_GITHUB }}
+        dotnet nuget push ${{ env.PASTA }}/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_PACKAGE_GITHUB }} --skip-duplicate
         
     - name: Publica Pacote no Nuget
       run: dotnet nuget push ${{ env.PASTA }}/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
