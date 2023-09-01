@@ -12,7 +12,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>icon-exkyn.png</PackageIcon>
-    <PackageTags>Exkyn; Exkyn Core</PackageTags>
+    <PackageTags>Exkyn; Exkyn.Core</PackageTags>
     <Description>Biblioteca com métodos genericos para uso dentro de projetos .NET</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
