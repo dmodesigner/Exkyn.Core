@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Exkyn.Core.Extensions;
+using System.Text.RegularExpressions;
 
 namespace Exkyn.Core.Helpers
 {
@@ -6,7 +7,7 @@ namespace Exkyn.Core.Helpers
     {
         public static bool CPF(string cpf)
         {
-            cpf = VariableHelpers.NoFormatting(cpf);
+            cpf = cpf.NoFormatting();
 
             if (cpf == null || cpf.Length > 11)
                 return false;
@@ -76,7 +77,7 @@ namespace Exkyn.Core.Helpers
 
         public static bool CNPJ(string cnpj)
         {
-            cnpj = VariableHelpers.NoFormatting(cnpj);
+            cnpj = cnpj.NoFormatting();
 
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -127,7 +128,7 @@ namespace Exkyn.Core.Helpers
 
         public static bool PIS(string pis)
         {
-            pis = VariableHelpers.NoFormatting(pis);
+            pis = pis.NoFormatting();
 
             int[] multiplier = new int[10] { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int sum = 0;
