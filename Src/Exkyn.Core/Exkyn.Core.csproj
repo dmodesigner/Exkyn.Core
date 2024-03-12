@@ -15,6 +15,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>exkyn; exkyn core; helpers; extensions</PackageTags>
     <Description>Biblioteca com métodos genericos para uso dentro de projetos .NET</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
