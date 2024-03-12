@@ -9,7 +9,7 @@ public static class ValidateExtension
     /// </summary>
     /// <param name="cpf">Recebe uma string</param>
     /// <returns>Retorna um bool</returns>
-    public static bool ValidateCPF(this string cpf)
+    public static bool ValidateCPF(this string? cpf)
     {
         cpf = cpf.NoFormatting();
 
@@ -84,12 +84,15 @@ public static class ValidateExtension
     /// </summary>
     /// <param name="cnpj">Recebe uma string</param>
     /// <returns>Retorna um bool</returns>
-    public static bool ValidateCNPJ(this string cnpj)
+    public static bool ValidateCNPJ(this string? cnpj)
     {
         cnpj = cnpj.NoFormatting();
 
-        int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-        int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+        if (cnpj is null)
+            return false;
+
+        int[] multiplicador1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        int[] multiplicador2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
         int soma;
         int resto;
         string digito;
@@ -140,11 +143,14 @@ public static class ValidateExtension
     /// </summary>
     /// <param name="pis">Recebe uma string</param>
     /// <returns>Retorna um bool</returns>
-    public static bool ValidatePIS(this string pis)
+    public static bool ValidatePIS(this string? pis)
     {
         pis = pis.NoFormatting();
 
-        int[] multiplier = new int[10] { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+        if (pis is null)
+            return false;
+
+        int[] multiplier = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
         int sum = 0;
         int rest;
 
@@ -175,6 +181,9 @@ public static class ValidateExtension
     /// <returns>Retorna um bool</returns>
     public static bool ValidateEmail(this string email)
     {
+        if (string.IsNullOrWhiteSpace(email))
+            return false;
+
         var regex = new Regex("^[A-Za-z0-9](([_.-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([.-]?[a-zA-Z0-9]+)*)([.][A-Za-z]{2,4})$");
 
         var match = regex.Match(email);
