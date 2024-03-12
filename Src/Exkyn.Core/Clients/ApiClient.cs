@@ -4,6 +4,11 @@ namespace Exkyn.Core.Clients;
 
 public class ApiClient<TSaida> : BaseApiClient where TSaida : class
 {
+    /// <summary>
+    /// Consome a API usando o método GET
+    /// </summary>
+    /// <param name="url">Recebe uma string</param>
+    /// <returns>Retorna uma tarefa de objeto</returns>
     public async Task<TSaida?> GetAsync(string url)
     {
         SetUrl(url);
@@ -16,6 +21,11 @@ public class ApiClient<TSaida> : BaseApiClient where TSaida : class
         return null;
     }
 
+    /// <summary>
+    /// Consome a API usando o método GET
+    /// </summary>
+    /// <param name="url">Recebe uma string</param>
+    /// <returns>Retorna uma tarefa de lista de objeto</returns>
     public async Task<List<TSaida>?> GetListAsync(string url)
     {
         SetUrl(url);
@@ -31,6 +41,12 @@ public class ApiClient<TSaida> : BaseApiClient where TSaida : class
 
 public class ApiClient<TEntrada, TSaida> : BaseApiClient where TSaida : class
 {
+    /// <summary>
+    /// Consome a API usando o método POST
+    /// </summary>
+    /// <param name="url">Recebe uma string</param>
+    /// <param name="obj">Recebe um objeto</param>
+    /// <returns>Retorna uma tarefa de objeto</returns>
     public async Task<TSaida?> PostAsync(string url, TEntrada obj)
     {
         SetUrl(url);
@@ -43,6 +59,12 @@ public class ApiClient<TEntrada, TSaida> : BaseApiClient where TSaida : class
         return null;
     }
 
+    /// <summary>
+    /// Consome a API usando o método POST
+    /// </summary>
+    /// <param name="url">Recebe uma string</param>
+    /// <param name="obj">Recebe um objeto</param>
+    /// <returns>Retorna uma tarefa de lista de objeto</returns>
     public async Task<List<TSaida>?> PostListAsync(string url, TEntrada obj)
     {
         SetUrl(url);
