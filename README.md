@@ -1,77 +1,77 @@
 
 # Biblioteca Exkyn Core
 
-Uma biblioteca de uso geral, contendo métodos genéricos e de uso em vários projetos da Exkyn. O objetivo desse repositório é permitir o uso compartilhado entre projetos com métodos que são usados com grande frequência.
+Uma biblioteca construída em .NET para uso geral dentro de projetos.
 
-## O projeto é dividido em duas áreas
+## O projeto é dividido em tres áreas
+
+- Extensions
 
 - Helpers
 
-- Models
+- Clients
+
+## Extensions
+
+#### ConvertExtension
+
+Uma extensão das possibilidades de conversão entre elas um objeto em string ou uma lista em data table.
+
+#### ExpirationDayExtension
+
+Adiciona dias a data de forma corrida ou levando em consideração os dias uteis.
+
+#### HourExtension
+
+Permite adicionar a data a hora inicial ou final de um dia.
+
+#### MoneyExtension
+
+Formata um valor monetário adicionando a moeda desejada.
+
+#### NoFormattingExtension
+
+Remove caracteres especiais de uma string.
+
+#### UpperFirstLetterExtension
+
+Deixa a primeira letra em maiúscula
+
+#### ValidateExtension
+
+Permite validar CPF, CNPJ, PIS e E-mail.
 
 ## Helpers
 
-#### ApiHelpers
+#### DirectoryHelper
 
-Métodos que permite consumir uma API com retorno em JSON e alimenta o retorno para um objeto ou lista.
+Permite criar diretórios e listar os arquivos existente no diretório.
 
-#### ConvertHelpers
+#### EncryptHelper
 
-Métodos de conversão de objetos e elementos.
+Permite criptografar usando o SHA-256 ou o AES. Além de permitir descriptografar o AES.
 
-#### DirectoryHelpers
+#### FileHelper
 
-Métodos para criar, verificar se existe um diretório em um caminho especifico.
+Cria arquivos e permite escrever neles.
 
-#### EncryptHelpers
+#### LogHelper
 
-Métodos para criptografar em MD5 e AES (criptografia e descriptografia).
+Permite adicionar logs em um arquivo.
 
-#### ExpirationDayHelpers
+## Clients
 
-Métodos para expiração de dias, retorno de dias uteis.
+#### ApiClient
 
-#### FileHelpers
+Permite consumir API externas configuradas para o JSON formato de API. Possui métodos GET e POST que retornam o objeto solicitado devidamente preenchido
 
-Métodos para criar um arquivo, validar se existe o arquivo ou escrever em um arquivo.
+## Instalação
 
-#### HourHelpers
+Você pode instalar esse projeto pelo Nuget
 
-Métodos para tratamento das horas (usado em relatórios).
-
-#### LogHelpers
-
-Métodos para formatar um valor recebido em moeda.
-
-#### MoneyHelpers
-
-Métodos de conversão de objetos e elementos.
-
-#### ValidateHelpers
-
-Métodos para validar CPF, CNPJ, PIS e E-mail.
-
-#### VariableHelpers
-
-Métodos para tratar uma variável, removendo uma formatação adicionando formatação e etc.
-
-## Models
-
-#### Designer
-
-Informações sobre a DMO Designer. Como links, e-mail, telefone e etc.
-
-#### Developer
-
-Informações sobre a Exkyn Tecnologia. Como links, e-mail, telefone e etc.
-
-#### HttpResponseException
-
-Uma model para uso no tratamento de erro de forma genérica.
-
-#### StateOfBrazil
-
-A lista das siglas de todos os estados brasileiros.
+```bash
+  dotnet add package Exkyn.Core --version 8.0.0
+```
 
 ## Autor
 
