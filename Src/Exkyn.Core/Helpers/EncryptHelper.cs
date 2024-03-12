@@ -16,10 +16,10 @@ public class EncryptHelper
     private static void ValidateKeyAndVector(string key, string vector)
     {
         if (string.IsNullOrWhiteSpace(key))
-            throw new ArgumentException("Informe a chave KEY.");
+            throw new ArgumentException("Você deve informar o Key através de uma variável de ambiente Base64Key ou como parâmetro de entrada do método");
 
         if (string.IsNullOrWhiteSpace(vector))
-            throw new ArgumentException("Informe o Vetor.");
+            throw new ArgumentException("Você deve informar o Vetor através de uma variável de ambiente Base64Vector ou como parâmetro de entrada do método");
     }
 
     #endregion
@@ -49,6 +49,13 @@ public class EncryptHelper
         return hashString;
     }
 
+    /// <summary>
+    /// Criptografa usando a AES 256
+    /// </summary>
+    /// <param name="input">Recebe uma string</param>
+    /// <returns> uma string</returns>
+    public static string AesEncryptor(string input) => AesEncryptor(input, Environment.GetEnvironmentVariable("Base64Key") ?? string.Empty, Environment.GetEnvironmentVariable("Base64Vector") ?? string.Empty);
+    
     /// <summary>
     /// Criptografa usando a AES 256
     /// </summary>
@@ -90,6 +97,13 @@ public class EncryptHelper
             return Convert.ToBase64String(encryptedData);
         }
     }
+
+    /// <summary>
+    /// Descriptografa usando o AES 256
+    /// </summary>
+    /// <param name="input">Recebe uma string</param>
+    /// <returns> uma string</returns>
+    public static string AesDecryptor(string input) => AesDecryptor(input, Environment.GetEnvironmentVariable("Base64Key") ?? string.Empty, Environment.GetEnvironmentVariable("Base64Vector") ?? string.Empty);
 
     /// <summary>
     /// Descriptografa usando o AES 256
