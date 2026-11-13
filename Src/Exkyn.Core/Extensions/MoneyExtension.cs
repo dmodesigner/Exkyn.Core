@@ -2,35 +2,52 @@
 
 namespace Exkyn.Core.Extensions;
 
-internal static class MoneyExtension
+/// <summary>
+/// Métodos de extensão para formatação de valores numéricos em moeda.
+/// </summary>
+public static class MoneyExtension
 {
-    /// <summary>
-    /// Retorna o valor monetário formatado no padrão de moeda brasileiro
-    /// </summary>
-    /// <param name="value">Recebe um decimal</param>
-    /// <returns>Retorna uma string</returns>
-    public static string Money(this decimal value) => string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", value);
+    private const string DefaultCulture = "pt-BR";
 
     /// <summary>
-    /// Retorna o valor monetário formatado no padrão de moeda brasileiro
+    /// Retorna o valor monetário formatado no padrão de moeda brasileiro (pt-BR).
     /// </summary>
-    /// <param name="value">>Recebe um decimal</param>
-    /// <param name="culture">Recebe uma string</param>
-    /// <returns>Retorna uma string</returns>
-    public static string Money(this decimal value, string culture) => string.Format(CultureInfo.GetCultureInfo(culture), "{0:C}", value);
+    /// <param name="value">Valor decimal a ser formatado.</param>
+    /// <returns>String formatada como moeda (ex: R$ 1.234,56).</returns>
+    public static string Money(this decimal value) => value.Money(DefaultCulture);
 
     /// <summary>
-    /// Retorna o valor monetário formatado no padrão de moeda brasileiro
+    /// Retorna o valor monetário formatado de acordo com a cultura informada.
     /// </summary>
-    /// <param name="value">Recebe um double</param>
-    /// <returns>Retorna uma string</returns>
-    public static string Money(this double value) => string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", value);
+    /// <param name="value">Valor decimal a ser formatado.</param>
+    /// <param name="culture">Código da cultura (ex: "pt-BR", "en-US", "es-ES").</param>
+    /// <returns>String formatada como moeda na cultura especificada.</returns>
+    public static string Money(this decimal value, string culture)
+    {
+        if (string.IsNullOrWhiteSpace(culture))
+            throw new ArgumentException("A cultura informada não pode ser nula ou vazia.", nameof(culture));
+
+        return value.ToString("C", CultureInfo.GetCultureInfo(culture));
+    }
 
     /// <summary>
-    /// Retorna o valor monetário formatado no padrão de moeda brasileiro
+    /// Retorna o valor monetário formatado no padrão de moeda brasileiro (pt-BR).
     /// </summary>
-    /// <param name="value">>Recebe um double</param>
-    /// <param name="culture">Recebe uma string</param>
-    /// <returns>Retorna uma string</returns>
-    public static string Money(this double value, string culture) => string.Format(CultureInfo.GetCultureInfo(culture), "{0:C}", value);
+    /// <param name="value">Valor double a ser formatado.</param>
+    /// <returns>String formatada como moeda (ex: R$ 1.234,56).</returns>
+    public static string Money(this double value) => value.Money(DefaultCulture);
+
+    /// <summary>
+    /// Retorna o valor monetário formatado de acordo com a cultura informada.
+    /// </summary>
+    /// <param name="value">Valor double a ser formatado.</param>
+    /// <param name="culture">Código da cultura (ex: "pt-BR", "en-US", "es-ES").</param>
+    /// <returns>String formatada como moeda na cultura especificada.</returns>
+    public static string Money(this double value, string culture)
+    {
+        if (string.IsNullOrWhiteSpace(culture))
+            throw new ArgumentException("A cultura informada não pode ser nula ou vazia.", nameof(culture));
+
+        return value.ToString("C", CultureInfo.GetCultureInfo(culture));
+    }
 }
