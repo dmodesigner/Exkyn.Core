@@ -2,14 +2,20 @@
 
 namespace Exkyn.Core.Extensions;
 
-public static class NoFormattingExtension
+/// <summary>
+/// Métodos de extensão para remoção de formatação e caracteres especiais de textos.
+/// </summary>
+public static partial class NoFormattingExtension
 {
+    [GeneratedRegex("[^0-9a-zA-Z]+")]
+    private static partial Regex NonAlphanumericRegex();
+
     /// <summary>
-    /// Retorna a variável sem caracteres especiais
+    /// Remove todos os caracteres especiais, pontuações e espaços, mantendo apenas letras (a-z, A-Z) e números (0-9).
     /// </summary>
-    /// <param name="value">Recebe uma string</param>
-    /// <returns>Retorna uma string</returns>
+    /// <param name="value">String com formatação (ex: CPF, CNPJ, CEP, telefone).</param>
+    /// <returns>String contendo apenas caracteres alfanuméricos ou <c>null</c> se a entrada for nula ou vazia.</returns>
     public static string? NoFormatting(this string? value) => string.IsNullOrWhiteSpace(value)
         ? null
-        : Regex.Replace(value.Trim(), "[^0-9a-zA-Z]+", "");
+        : NonAlphanumericRegex().Replace(value, string.Empty);
 }
