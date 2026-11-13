@@ -1,19 +1,24 @@
 ﻿namespace Exkyn.Core.Extensions;
 
+/// <summary>
+/// Métodos de extensão para formatação de letras maiúsculas em strings.
+/// </summary>
 public static class UpperFirstLetterExtension
 {
     /// <summary>
-    /// Retorna a primeira letra da palavra em maiúsculo
+    /// Retorna o texto com a primeira letra em maiúsculo, removendo espaços nas extremidades.
     /// </summary>
-    /// <param name="value">Recebe uma string</param>
-    /// <returns>Retorna uma string</returns>
-    public static string? UpperFirstLetter(this string value)
+    /// <param name="value">Texto a ser formatado.</param>
+    /// <returns>Texto com a inicial maiúscula ou <c>null</c> se a entrada for nula ou vazia.</returns>
+    public static string? UpperFirstLetter(this string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
             return null;
 
-        value = value.Trim();
+        ReadOnlySpan<char> trimmed = value.AsSpan().Trim();
 
-        return char.ToUpper(value[0]) + value.Substring(1);
+        Span<char> firstChar = [char.ToUpper(trimmed[0])];
+
+        return string.Concat(firstChar, trimmed[1..]);
     }
 }
