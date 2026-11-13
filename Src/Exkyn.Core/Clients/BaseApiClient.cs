@@ -8,17 +8,22 @@ public abstract class BaseApiClient
 
     protected string Url { get; private set; } = string.Empty;
 
-    protected BaseApiClient()
+    protected BaseApiClient(HttpClient httpClient)
     {
-        _httClient = new HttpClient();
+        ArgumentNullException.ThrowIfNull(httpClient);
 
-        _httClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        _httClient = httpClient;
+
+        if (!_httClient.DefaultRequestHeaders.Accept.Any(h => h.MediaType == "application/json"))
+        {
+            _httClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
     }
 
     protected void SetUrl(string url)
     {
         if (string.IsNullOrWhiteSpace(url))
-            throw new ArgumentException("A URL não pode ser nula ou vazia.");
+            throw new ArgumentException("A URL não pode ser nula ou vazia.", nameof(url));
 
         Url = url.Trim();
     }
