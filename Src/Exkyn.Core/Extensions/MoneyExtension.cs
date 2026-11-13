@@ -27,7 +27,7 @@ public static class MoneyExtension
         if (string.IsNullOrWhiteSpace(culture))
             throw new ArgumentException("A cultura informada não pode ser nula ou vazia.", nameof(culture));
 
-        return value.ToString("C", CultureInfo.GetCultureInfo(culture));
+        return value.ToString("C", CultureInfo.GetCultureInfo(culture, predefinedOnly: true));
     }
 
     /// <summary>
@@ -48,6 +48,6 @@ public static class MoneyExtension
         if (string.IsNullOrWhiteSpace(culture))
             throw new ArgumentException("A cultura informada não pode ser nula ou vazia.", nameof(culture));
 
-        return value.ToString("C", CultureInfo.GetCultureInfo(culture));
+        return value.ToString("C", CultureInfo.GetCultureInfo(culture, predefinedOnly: true));
     }
 }
