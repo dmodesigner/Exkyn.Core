@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\Ghb\Images\icon-exkyn.png">
+    <None Include="..\..\.github\images\icon-exkyn.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
