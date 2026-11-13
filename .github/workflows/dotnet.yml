@@ -14,7 +14,7 @@ env:
 permissions:
   id-token: write
   contents: read
-  
+
 jobs:
   build:
 
@@ -27,7 +27,7 @@ jobs:
       - name: Setup do .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: '11.0.x'
 
       - name: Restaurar dependências
         run: dotnet restore
@@ -36,7 +36,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Pack com Versionamento Automático
-        run: dotnet pack ./Src/Exkyn.Core/Exkyn.Core.csproj --configuration Release --no-build -p:PackageVersion=10.0.${{ github.run_number }} --output ./nupkg
+        run: dotnet pack ./Src/Exkyn.Core/Exkyn.Core.csproj --configuration Release --no-build -p:PackageVersion=11.0.${{ github.run_number }} --output ./nupkg
 
       - name: Obter token temporário do NuGet
         if: github.event_name == 'push'
