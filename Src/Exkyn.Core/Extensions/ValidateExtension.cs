@@ -2,192 +2,143 @@
 
 namespace Exkyn.Core.Extensions;
 
-public static class ValidateExtension
+/// <summary>
+/// Métodos de extensão para validação de documentos brasileiros (CPF, CNPJ, PIS) e e-mail.
+/// </summary>
+public static partial class ValidateExtension
 {
+    private static readonly int[] CnpjMultiplier1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    private static readonly int[] CnpjMultiplier2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    private static readonly int[] PisMultiplier = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    [GeneratedRegex(@"^[A-Za-z0-9]+([._+-][A-Za-z0-9]+)*@[A-Za-z0-9]+([.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$", RegexOptions.CultureInvariant)]
+    private static partial Regex EmailRegex();
+
     /// <summary>
-    /// Valida se a variável é um CPF valido
+    /// Valida se a string informada é um CPF válido.
     /// </summary>
-    /// <param name="cpf">Recebe uma string</param>
-    /// <returns>Retorna um bool</returns>
+    /// <param name="cpf">CPF com ou sem máscara.</param>
+    /// <returns><c>true</c> se o CPF for válido; caso contrário, <c>false</c>.</returns>
     public static bool ValidateCPF(this string? cpf)
     {
         cpf = cpf.NoFormatting();
 
-        if (cpf == null || cpf.Length > 11)
+        if (cpf is null || cpf.Length != 11 || !IsValidNumericSequence(cpf) || cpf == "12345678909")
             return false;
 
-        while (cpf.Length != 11)
-        {
-            cpf = '0' + cpf;
-        }
-
-        bool igual = true;
-
-        for (int i = 1; i < 11 && igual; i++)
-        {
-            if (cpf[i] != cpf[0])
-                igual = false;
-        }
-
-        if (igual || cpf == "12345678909")
-            return false;
-
-        int[] numeros = new int[11];
-
-        for (int i = 0; i < 11; i++)
-        {
-            numeros[i] = int.Parse(cpf[i].ToString());
-        }
-
-        int soma = 0;
-
+        int sum1 = 0;
         for (int i = 0; i < 9; i++)
         {
-            soma += (10 - i) * numeros[i];
+            sum1 += (cpf[i] - '0') * (10 - i);
         }
 
-        int resultado = soma % 11;
+        int remainder1 = sum1 % 11;
+        int digit1 = remainder1 < 2 ? 0 : 11 - remainder1;
 
-        if (resultado == 1 || resultado == 0)
-        {
-            if (numeros[9] != 0)
-                return false;
-        }
-        else if (numeros[9] != 11 - resultado)
+        if ((cpf[9] - '0') != digit1)
             return false;
 
-        soma = 0;
-
+        int sum2 = 0;
         for (int i = 0; i < 10; i++)
         {
-            soma += (11 - i) * numeros[i];
-
-            resultado = soma % 11;
+            sum2 += (cpf[i] - '0') * (11 - i);
         }
 
-        if (resultado == 1 || resultado == 0)
-        {
-            if (numeros[10] != 0)
-                return false;
-        }
-        else
-        {
-            if (numeros[10] != 11 - resultado)
-                return false;
-        }
+        int remainder2 = sum2 % 11;
+        int digit2 = remainder2 < 2 ? 0 : 11 - remainder2;
 
-        return true;
+        return (cpf[10] - '0') == digit2;
     }
 
     /// <summary>
-    /// Valida se a variável é um CNPJ valido
+    /// Valida se a string informada é um CNPJ válido.
     /// </summary>
-    /// <param name="cnpj">Recebe uma string</param>
-    /// <returns>Retorna um bool</returns>
+    /// <param name="cnpj">CNPJ com ou sem máscara.</param>
+    /// <returns><c>true</c> se o CNPJ for válido; caso contrário, <c>false</c>.</returns>
     public static bool ValidateCNPJ(this string? cnpj)
     {
         cnpj = cnpj.NoFormatting();
 
-        if (cnpj is null)
+        if (cnpj is null || cnpj.Length != 14 || !IsValidNumericSequence(cnpj))
             return false;
 
-        int[] multiplicador1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        int[] multiplicador2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        int soma;
-        int resto;
-        string digito;
-        string tempCnpj;
-
-        if (cnpj.Length != 14)
-            return false;
-
-        tempCnpj = cnpj.Substring(0, 12);
-
-        soma = 0;
-
+        int sum1 = 0;
         for (int i = 0; i < 12; i++)
         {
-            soma += int.Parse(tempCnpj[i].ToString()) * multiplicador1[i];
+            sum1 += (cnpj[i] - '0') * CnpjMultiplier1[i];
         }
 
-        resto = (soma % 11);
+        int remainder1 = sum1 % 11;
+        int digit1 = remainder1 < 2 ? 0 : 11 - remainder1;
 
-        if (resto < 2)
-            resto = 0;
-        else
-            resto = 11 - resto;
+        if ((cnpj[12] - '0') != digit1)
+            return false;
 
-        digito = resto.ToString();
-        tempCnpj = tempCnpj + digito;
-        soma = 0;
-
+        int sum2 = 0;
         for (int i = 0; i < 13; i++)
         {
-            soma += int.Parse(tempCnpj[i].ToString()) * multiplicador2[i];
+            sum2 += (cnpj[i] - '0') * CnpjMultiplier2[i];
         }
 
-        resto = (soma % 11);
+        int remainder2 = sum2 % 11;
+        int digit2 = remainder2 < 2 ? 0 : 11 - remainder2;
 
-        if (resto < 2)
-            resto = 0;
-        else
-            resto = 11 - resto;
-
-        digito = digito + resto.ToString();
-
-        return cnpj.EndsWith(digito);
+        return (cnpj[13] - '0') == digit2;
     }
 
     /// <summary>
-    /// Valida se a variável é um PIS valido
+    /// Valida se a string informada é um PIS/PASEP/NIT válido.
     /// </summary>
-    /// <param name="pis">Recebe uma string</param>
-    /// <returns>Retorna um bool</returns>
+    /// <param name="pis">PIS com ou sem máscara.</param>
+    /// <returns><c>true</c> se o PIS for válido; caso contrário, <c>false</c>.</returns>
     public static bool ValidatePIS(this string? pis)
     {
         pis = pis.NoFormatting();
 
-        if (pis is null)
+        if (pis is null || pis.Length != 11 || !IsValidNumericSequence(pis))
             return false;
 
-        int[] multiplier = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
         int sum = 0;
-        int rest;
-
-        if (pis.Length != 11)
-            return false;
-
-        pis = pis.PadLeft(11, '0');
-
         for (int i = 0; i < 10; i++)
         {
-            sum += int.Parse(pis[i].ToString()) * multiplier[i];
+            sum += (pis[i] - '0') * PisMultiplier[i];
         }
 
-        rest = sum % 11;
+        int remainder = sum % 11;
+        int expectedDigit = remainder < 2 ? 0 : 11 - remainder;
 
-        if (rest < 2)
-            rest = 0;
-        else
-            rest = 11 - rest;
-
-        return pis.EndsWith(rest.ToString());
+        return (pis[10] - '0') == expectedDigit;
     }
 
     /// <summary>
-    /// Valida se a variável é um e-mail valido
+    /// Valida se a string informada possui formato de e-mail válido.
     /// </summary>
-    /// <param name="email">Recebe uma string</param>
-    /// <returns>Retorna um bool</returns>
-    public static bool ValidateEmail(this string email)
+    /// <param name="email">Endereço de e-mail a ser validado.</param>
+    /// <returns><c>true</c> se o e-mail for válido; caso contrário, <c>false</c>.</returns>
+    public static bool ValidateEmail(this string? email)
     {
         if (string.IsNullOrWhiteSpace(email))
             return false;
 
-        var regex = new Regex("^[A-Za-z0-9](([_.-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([.-]?[a-zA-Z0-9]+)*)([.][A-Za-z]{2,4})$");
+        return EmailRegex().IsMatch(email.Trim());
+    }
 
-        var match = regex.Match(email);
+    /// <summary>
+    /// Verifica se todos os caracteres são dígitos numéricos e se não são todos repetidos (ex: 00000000000).
+    /// </summary>
+    private static bool IsValidNumericSequence(string value)
+    {
+        bool allSame = true;
 
-        return match.Success;
+        for (int i = 0; i < value.Length; i++)
+        {
+            if (!char.IsAsciiDigit(value[i]))
+                return false;
+
+            if (value[i] != value[0])
+                allSame = false;
+        }
+
+        return !allSame;
     }
 }
