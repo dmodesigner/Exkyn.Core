@@ -35,6 +35,9 @@ jobs:
       - name: Build da Solução
         run: dotnet build --configuration Release --no-restore
 
+      - name: Executar os Testes Unitários
+        run: dotnet test Exkyn.Core.sln --configuration Release --no-build --verbosity normal
+
       - name: Pack com Versionamento Automático
         run: dotnet pack ./Src/Exkyn.Core/Exkyn.Core.csproj --configuration Release --no-build -p:PackageVersion=11.0.${{ github.run_number }} --output ./nupkg
 
