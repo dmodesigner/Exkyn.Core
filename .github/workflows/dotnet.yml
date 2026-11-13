@@ -17,22 +17,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 10.0.x
-        
-    - name: Restaura as Dependencias
-      run: dotnet restore
-      
-    - name: Gera o Pacote
-      run: dotnet build -c Release -o ${{ env.PASTA }}
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-    - name: Publica Pacote no Github
-      run: |
-        dotnet nuget add source --username dmodesigner --password ${{ secrets.PASSWORD_GITHUB }} --store-password-in-clear-text --name github ${{ secrets.PACKAGE_GITHUB }}
-        dotnet nuget push ${{ env.PASTA }}/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ secrets.PACKAGE_GITHUB }} --skip-duplicate
-        
-    - name: Publica Pacote no Nuget
-      run: dotnet nuget push ${{ env.PASTA }}/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
+      - name: Setup do .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restaurar dependências
+        run: dotnet restore
+            
+      - name: Build da Solução
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack com Versionamento Automático
+        run: dotnet pack ./Src/Exkyn.Core/Exkyn.Core.csproj --configuration Release --no-build -p:PackageVersion=10.0.${{ github.run_number }} --output ./nupkg
+
+      - name: Obter token temporário do NuGet
+        if: github.event_name == 'push'
+        id: nuget_login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push para o NuGet.org
+        if: github.event_name == 'push'
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
