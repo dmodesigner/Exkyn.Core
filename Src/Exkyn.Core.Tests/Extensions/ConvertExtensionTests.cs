@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using Exkyn.Core.Extensions;
-using Xunit;
 
 namespace Exkyn.Core.Tests.Extensions;
 
