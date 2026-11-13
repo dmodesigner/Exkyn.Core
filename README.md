@@ -70,7 +70,7 @@ Permite consumir API externas configuradas para o JSON formato de API. Possui mÃ
 VocÃª pode instalar esse projeto pelo Nuget
 
 ```bash
-  dotnet add package Exkyn.Core --version 8.0.0
+  dotnet add package Exkyn.Core --version 10.0.0
 ```
 
 ## Autor
